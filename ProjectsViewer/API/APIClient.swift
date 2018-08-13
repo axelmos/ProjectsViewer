@@ -15,14 +15,13 @@ typealias StringResponse = (String?) -> Void
 class APIClient: NSObject {
     static let sharedInstance = APIClient()
     private let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
+    private let baseURL = "https://yat.teamwork.com/"
+    private let token = "twp_k9ejP88LcuojHjmFkUFuYIUNYalg"
     
     func getAllProjects( completionHandler:@escaping DictionaryErrorResponse, errorHandler:@escaping StringResponse) {
         
-        var requestURLString = "https://yat.teamwork.com/"
-        requestURLString.append("projects.json")
-        
-        Alamofire.request(requestURLString, method: .get)
-            .authenticate(user: "twp_k9ejP88LcuojHjmFkUFuYIUNYalg", password: "x")
+        Alamofire.request(baseURL + "projects.json", method: .get)
+            .authenticate(user: token, password: "x")
             .responseJSON {  [weak self ] response in
             if let dataOK = response.data {
                 do {
@@ -39,6 +38,31 @@ class APIClient: NSObject {
             else{
                 errorHandler(self?.getMessageError(response: response.response, data: nil))
             }
+        }
+    }
+    
+    func addProject(project:Project, completionHandler:@escaping DictionaryErrorResponse, errorHandler:@escaping StringResponse) {
+        
+        let body: [String: AnyObject] = [:]
+        
+        Alamofire.request(baseURL + "projects.json", method: .post, parameters: body)
+            .authenticate(user: token, password: "x")
+            .responseJSON {  [weak self ] response in
+                if let dataOK = response.data {
+                    do {
+                        guard let dictionary = try JSONSerialization.jsonObject(with: dataOK, options: .mutableContainers) as? [String: AnyObject] else {
+                            errorHandler("An error occurrred parsing the response.")
+                            return
+                        }
+                        completionHandler(dictionary, response.result.error)
+                        
+                    } catch {
+                        errorHandler("An error occurrred parsing the response.")
+                    }
+                }
+                else{
+                    errorHandler(self?.getMessageError(response: response.response, data: nil))
+                }
         }
     }
     
