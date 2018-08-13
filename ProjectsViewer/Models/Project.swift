@@ -35,11 +35,11 @@ struct Project {
             logo = _logo
         }
         
-        if let _startDate = dict["startDate"] as? String {
+        if let _startDate = dict["created-on"] as? String {
             startDate = _startDate
         }
         
-        if let _endDate = dict["endDate"] as? String {
+        if let _endDate = dict["last-changed-on"] as? String {
             endDate = _endDate
         }
     }

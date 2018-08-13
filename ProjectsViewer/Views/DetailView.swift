@@ -26,17 +26,17 @@ class DetailView: UIView {
         super.init(frame: frame)
         
         contentView = UIView()
-        topView = UIView(frame: CGRect(x: 0, y: 0, width: 414, height: 384))
-        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 414, height: 240))
-        dataView = UIView(frame: CGRect(x: 0, y: 0, width: 414, height: 72))
+        topView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 384))
+        imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 375, height: 240))
+        dataView = UIView(frame: CGRect(x: 0, y: 0, width: 375, height: 72))
         dataSubView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 72))
-        lblCreatedDateTitle = UILabel(frame: CGRect(x: 0, y: 13, width: 65, height: 21))
-        lblCreatedDate = UILabel(frame: CGRect(x: 0, y: 0, width: 65, height: 21))
-        lblModifiedDateTitle = UILabel(frame: CGRect(x: 65, y: 13, width: 85, height: 21))
-        lblModifiedDate = UILabel(frame: CGRect(x: 0, y: 0, width: 85, height: 21))
+        lblCreatedDateTitle = UILabel(frame: CGRect(x: 0, y: 13, width: 105, height: 21))
+        lblCreatedDate = UILabel(frame: CGRect(x: 0, y: 0, width: 105, height: 21))
+        lblModifiedDateTitle = UILabel(frame: CGRect(x: 115, y: 13, width: 105, height: 21))
+        lblModifiedDate = UILabel(frame: CGRect(x: 0, y: 0, width: 105, height: 21))
         
-        bottomView = UIView(frame: CGRect(x: 20, y: 332, width: 374, height: 384))
-        txtView = UITextView(frame: CGRect(x: 20, y: 20, width: 364, height: 374))
+        bottomView = UIView(frame: CGRect(x: 20, y: 332, width: 375, height: 384))
+        txtView = UITextView(frame: CGRect(x: 0, y: 0, width: 335, height: 251))
         
         self.addSubview(contentView)
         contentView.addSubview(topView)
@@ -98,17 +98,19 @@ class DetailView: UIView {
         
         bottomView.backgroundColor = UIColor.white
         bottomView.translatesAutoresizingMaskIntoConstraints = false
+        bottomView.clipsToBounds = true
+        txtView.clipsToBounds = true
         
     }
     
-    func setupConstraints(navBarHeight: CGFloat, tabBarHeight: CGFloat) {
+    func setupConstraints(navBarHeight: CGFloat) {
         
         // CONTENT VIEW
         
         contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
         contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
         contentView.topAnchor.constraint(equalTo: self.topAnchor, constant: navBarHeight).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -tabBarHeight).isActive = true
+        contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0).isActive = true
         
         // TOP VIEW (container for image and dark gray bar)
         
@@ -158,34 +160,35 @@ class DetailView: UIView {
         dataSubView.centerXAnchor.constraint(equalTo: topView.centerXAnchor).isActive = true
         dataSubView.topAnchor.constraint(equalTo: dataView.topAnchor).isActive = true
         dataSubView.heightAnchor.constraint(equalToConstant: 72).isActive = true
-        dataSubView.widthAnchor.constraint(equalToConstant: 300).isActive = true
+        dataSubView.leadingAnchor.constraint(equalTo: dataView.leadingAnchor).isActive = true
+        dataSubView.trailingAnchor.constraint(equalTo: dataView.trailingAnchor).isActive = true
         
         // CREATED DATE LABELS
         
         lblCreatedDateTitle.leadingAnchor.constraint(equalTo: dataSubView.leadingAnchor).isActive = true
         lblCreatedDateTitle.topAnchor.constraint(equalTo: dataSubView.topAnchor, constant: 13).isActive = true
-        lblCreatedDateTitle.widthAnchor.constraint(equalToConstant: 65).isActive = true
+        lblCreatedDateTitle.widthAnchor.constraint(equalToConstant: (dataView.frame.size.width / 2)).isActive = true
         lblCreatedDateTitle.heightAnchor.constraint(equalToConstant: 21).isActive = true
         lblCreatedDate.leadingAnchor.constraint(equalTo: dataSubView.leadingAnchor).isActive = true
         lblCreatedDate.topAnchor.constraint(equalTo: lblCreatedDateTitle.bottomAnchor, constant: 4).isActive = true
-        lblCreatedDate.widthAnchor.constraint(equalToConstant: 65).isActive = true
+        lblCreatedDate.widthAnchor.constraint(equalToConstant: (dataView.frame.size.width / 2)).isActive = true
         lblCreatedDate.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
         // MODIFIED DATE LABELS
         
         lblModifiedDateTitle.leadingAnchor.constraint(equalTo: lblCreatedDateTitle.trailingAnchor).isActive = true
         lblModifiedDateTitle.topAnchor.constraint(equalTo: dataSubView.topAnchor, constant: 13).isActive = true
-        lblModifiedDateTitle.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        lblModifiedDateTitle.widthAnchor.constraint(equalToConstant: (dataView.frame.size.width / 2)).isActive = true
         lblModifiedDateTitle.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
         lblModifiedDate.leadingAnchor.constraint(equalTo: lblModifiedDateTitle.leadingAnchor).isActive = true
         lblModifiedDate.topAnchor.constraint(equalTo: lblModifiedDateTitle.bottomAnchor, constant: 4).isActive = true
-        lblModifiedDate.widthAnchor.constraint(equalToConstant: 85).isActive = true
+        lblModifiedDate.widthAnchor.constraint(equalToConstant: (dataView.frame.size.width / 2)).isActive = true
         lblModifiedDate.heightAnchor.constraint(equalToConstant: 21).isActive = true
         
        
         
-        // BOTTOM VIEW WITH 2 TABLES
+        // BOTTOM VIEW WITH TEXTVIEW
         
         bottomView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         bottomView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20).isActive = true
@@ -204,8 +207,9 @@ class DetailView: UIView {
         txtView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor).isActive = true
         txtView.topAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
         txtView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor).isActive = true
-        let tableWidth = bottomView.frame.size.width / 2
-        txtView.widthAnchor.constraint(equalToConstant: tableWidth - 24).isActive = true
+        txtView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor).isActive = true
         
+        self.layoutIfNeeded()
+        self.setNeedsLayout()
     }
 }

@@ -28,6 +28,8 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        performSegue(withIdentifier: "showDetailSegue", sender: indexPath)
+        let detailVC = DetailViewController()
+        detailVC.project = projects[indexPath.row]
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
 }
