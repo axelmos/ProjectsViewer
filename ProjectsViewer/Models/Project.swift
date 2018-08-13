@@ -43,4 +43,9 @@ struct Project {
             endDate = _endDate
         }
     }
+    
+    init (title: String, desc: String) {
+        name = title
+        description = desc
+    }
 }

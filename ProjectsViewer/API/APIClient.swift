@@ -43,21 +43,21 @@ class APIClient: NSObject {
     
     func addProject(project:Project, completionHandler:@escaping DictionaryErrorResponse, errorHandler:@escaping StringResponse) {
         
-        let body: [String: AnyObject] = [:]
+        let strBody = "{'project': {'name': \(String(describing: project.name)), 'description': \(String(describing: project.description))}}"
         
-        Alamofire.request(baseURL + "projects.json", method: .post, parameters: body)
+        Alamofire.request(baseURL + "projects.json", method: .post, parameters: [:], encoding: strBody, headers: [:])
             .authenticate(user: token, password: "x")
             .responseJSON {  [weak self ] response in
                 if let dataOK = response.data {
                     do {
                         guard let dictionary = try JSONSerialization.jsonObject(with: dataOK, options: .mutableContainers) as? [String: AnyObject] else {
-                            errorHandler("An error occurrred parsing the response.")
+                            errorHandler("An error occurred parsing the response.")
                             return
                         }
                         completionHandler(dictionary, response.result.error)
                         
                     } catch {
-                        errorHandler("An error occurrred parsing the response.")
+                        errorHandler("An error occurred parsing the response.")
                     }
                 }
                 else{
@@ -90,5 +90,15 @@ class APIClient: NSObject {
         return "Unexpected error"
     }
     
+    
+}
+
+extension String: ParameterEncoding {
+    
+    public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var request = try urlRequest.asURLRequest()
+        request.httpBody = data(using: .utf8, allowLossyConversion: false)
+        return request
+    }
     
 }
