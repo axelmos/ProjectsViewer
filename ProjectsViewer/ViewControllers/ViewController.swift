@@ -73,16 +73,6 @@ class ViewController: UIViewController, UITableViewDelegate {
         }
     }
     
-    // MARK: - Navigation
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "showDetailSegue"{
-            let detailVC = segue.destination as! DetailViewController
-            let indexPath = sender as! IndexPath
-            detailVC.project = projects[indexPath.row]
-        }
-    }
     
     @IBAction func addProject(_ sender: AnyObject) {
         
