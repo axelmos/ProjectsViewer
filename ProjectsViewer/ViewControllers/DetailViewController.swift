@@ -45,9 +45,9 @@ class DetailViewController: UIViewController {
                 self.mainView.setupConstraints(navBarHeight: self.navBarH)
             } else {
                 // Landscape
-                self.view = DetailView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height - 20))
+                self.view = DetailView(frame: CGRect(x: 0, y: 0, width: size.width, height: size.height - 30))
                 
-                self.mainView.setupConstraints(navBarHeight: self.navBarH - 20)
+                self.mainView.setupConstraints(navBarHeight: self.navBarH - 30)
             }
 
             self.setContent()

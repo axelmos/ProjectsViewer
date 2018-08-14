@@ -209,7 +209,8 @@ class DetailView: UIView {
         txtView.bottomAnchor.constraint(equalTo: bottomView.bottomAnchor).isActive = true
         txtView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor).isActive = true
         
-        self.layoutIfNeeded()
-        self.setNeedsLayout()
+        DispatchQueue.main.async {
+            self.setNeedsLayout()
+        }
     }
 }

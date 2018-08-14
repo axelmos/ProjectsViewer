@@ -46,7 +46,7 @@
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jGu-a2-Rta">
-                                <rect key="frame" x="30" y="161.5" width="315" height="344"/>
+                                <rect key="frame" x="30" y="-288.5" width="315" height="344"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nd0-xJ-4CC">
                                         <rect key="frame" x="271" y="14" width="30" height="34"/>
@@ -128,7 +128,7 @@
                             <constraint firstAttribute="trailing" secondItem="VOZ-lV-m21" secondAttribute="trailing" id="2Yk-Ad-nPQ"/>
                             <constraint firstItem="E6G-Fw-8G1" firstAttribute="top" secondItem="VOZ-lV-m21" secondAttribute="bottom" id="A61-fe-yar"/>
                             <constraint firstItem="jGu-a2-Rta" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="30" id="Fgu-eF-AWT"/>
-                            <constraint firstItem="jGu-a2-Rta" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cyM-TF-HWh"/>
+                            <constraint firstItem="jGu-a2-Rta" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-450" id="cyM-TF-HWh"/>
                             <constraint firstItem="VOZ-lV-m21" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="eQG-fq-Wzc"/>
                             <constraint firstAttribute="trailing" secondItem="jGu-a2-Rta" secondAttribute="trailing" constant="30" id="z1S-9b-i4f"/>
                         </constraints>
@@ -141,6 +141,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addProjViewCenterY" destination="cyM-TF-HWh" id="3hB-VV-DRt"/>
                         <outlet property="addProjectView" destination="jGu-a2-Rta" id="25g-S8-Xkf"/>
                         <outlet property="tableView" destination="VOZ-lV-m21" id="Ahu-BY-Lcu"/>
                         <outlet property="txtDescrip" destination="u4s-tG-8NW" id="uTL-u5-kUY"/>

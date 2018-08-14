@@ -6,6 +6,7 @@
 //  Copyright © 2018 Axel Mosiejko. All rights reserved.
 //
 
+import UIKit
 import Foundation
 import SystemConfiguration
 
@@ -30,5 +31,13 @@ public final class Utils {
         let isReachable = flags.contains(.reachable)
         let needsConnection = flags.contains(.connectionRequired)
         return (isReachable && !needsConnection)
+    }
+    
+    static func showAlert(title: String, message: String, context: UIViewController) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        DispatchQueue.main.async {
+            context.present(alert, animated: true, completion: nil)
+        }
     }
 }

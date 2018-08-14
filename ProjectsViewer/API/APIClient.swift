@@ -13,10 +13,13 @@ typealias DictionaryErrorResponse = ([String: AnyObject]?, Error?) -> Void
 typealias StringResponse = (String?) -> Void
 
 class APIClient: NSObject {
+    
     static let sharedInstance = APIClient()
     private let defaultSession = URLSession(configuration: URLSessionConfiguration.default)
     private let baseURL = "https://yat.teamwork.com/"
     private let token = "twp_k9ejP88LcuojHjmFkUFuYIUNYalg"
+    
+    // MARK: ---------- GET ALL PROJECTS ---------
     
     func getAllProjects( completionHandler:@escaping DictionaryErrorResponse, errorHandler:@escaping StringResponse) {
         
@@ -41,11 +44,16 @@ class APIClient: NSObject {
         }
     }
     
+    // MARK: ---------- ADD NEW PROJECT ---------
+    
     func addProject(project:Project, completionHandler:@escaping DictionaryErrorResponse, errorHandler:@escaping StringResponse) {
         
+        let headers = ["Content-Type": "application/json"]
         let strBody = "{'project': {'name': \(String(describing: project.name)), 'description': \(String(describing: project.description))}}"
         
-        Alamofire.request(baseURL + "projects.json", method: .post, parameters: [:], encoding: strBody, headers: [:])
+        //let strBody2 = "['project': ['name': \(String(describing: project.name)), 'description': \(String(describing: project.description))]]"
+        
+        Alamofire.request(baseURL + "projects.json", method: .post, parameters: [:], encoding: strBody, headers: headers)
             .authenticate(user: token, password: "x")
             .responseJSON {  [weak self ] response in
                 if let dataOK = response.data {
@@ -64,6 +72,32 @@ class APIClient: NSObject {
                     errorHandler(self?.getMessageError(response: response.response, data: nil))
                 }
         }
+        
+        
+        
+        /*let url = NSURL(string: baseURL)!
+        let request = NSMutableURLRequest(url: url as URL)
+        let httpData = try! JSONSerialization.data(withJSONObject: strBody2)
+        
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = httpData
+        
+        let task = defaultSession.dataTask(with: request as URLRequest) { (data, response, error) in
+            
+            if data != nil {
+                do {
+                    guard let dictionary = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? [String: AnyObject] else {
+                        return
+                    }
+                    completionHandler(dictionary, error)
+                } catch {
+                    errorHandler("An error occurrred parsing the response.")
+                }
+            }
+        }
+        
+        task.resume()*/
     }
     
     

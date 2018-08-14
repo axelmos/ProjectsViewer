@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2407B0D821233BC900353BDB /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2407B0D721233BC900353BDB /* UIViewExtension.swift */; };
 		2F6A5F092120F47400E8B78F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6A5F082120F47400E8B78F /* DetailView.swift */; };
 		2F89F52221167B4700101240 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F89F52121167B4700101240 /* AppDelegate.swift */; };
 		2F89F52421167B4700101240 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F89F52321167B4700101240 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2407B0D721233BC900353BDB /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		2F6A5F082120F47400E8B78F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		2F89F51E21167B4700101240 /* ProjectsViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjectsViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F89F52121167B4700101240 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				2F89F54521177DE100101240 /* Utils.swift */,
+				2407B0D721233BC900353BDB /* UIViewExtension.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2407B0D821233BC900353BDB /* UIViewExtension.swift in Sources */,
 				2F89F53C211767FE00101240 /* ViewControllerDataSource.swift in Sources */,
 				2F6A5F092120F47400E8B78F /* DetailView.swift in Sources */,
 				2F89F5402117693900101240 /* ProjectTableViewCell.swift in Sources */,
